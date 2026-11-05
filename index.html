@@ -3,223 +3,217 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Data Labs | Data licensing for freight, 3PL and trucking firms</title>
-<meta name="description" content="How freight brokers, 3PLs and trucking companies can license de-identified operating records to AI developers: published deals, costs, process and risks.">
+<title>Data Labs | Freight records and AI licensing</title>
+<meta name="description" content="How freight brokers, 3PLs and trucking companies can license de-identified records to AI developers: reported deals, qualification and how it works.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101b24'/%3E%3Cpath d='M9 8h7a8 8 0 0 1 0 16H9z' fill='%23f26a21'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#07090d">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="top">
-  <div class="wrap top-in">
-    <a class="brand" href="#main" aria-label="Data Labs, back to top"><span class="mark" aria-hidden="true"></span>Data Labs</a>
-    <nav aria-label="Sections">
-      <a href="#deals">Deals</a>
-      <a href="#records">Records</a>
-      <a href="#process">Process</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#faq">Questions</a>
-    </nav>
-    <a class="btn btn-small" href="https://calendly.com/d/d35t-dtz-t3y/confidential-offer-review-pewter?utm_source=partner&amp;utm_campaign=PWRP8636" target="_blank" rel="noopener">Book a call</a>
-  </div>
+
+<header class="nav">
+  <a class="brand" href="#main" aria-label="Data Labs, back to top"><img src="logo.svg" alt="" width="28" height="28">Data Labs</a>
+  <nav aria-label="Sections">
+    <a href="#numbers">Numbers</a>
+    <a href="#records">Records</a>
+    <a href="#qualify">Qualify</a>
+    <a href="#how">How it works</a>
+    <a href="#faq">Questions</a>
+  </nav>
+  <a class="btn btn-sm" href="https://calendly.com/d/d35t-dtz-t3y/confidential-offer-review-pewter?utm_source=partner&amp;utm_campaign=PWRP8636" target="_blank" rel="noopener">Book a call</a>
 </header>
 
 <main id="main">
 <section class="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow">For owners of freight, 3PL and trucking firms</p>
-      <h1>Your old freight records could earn license fees from AI developers.</h1>
-      <p class="lead">AI labs license de-identified copies of the rate quotes, dispatch records, emails and claims your firm already keeps. A 100-person freight brokerage was reportedly paid $650K. Some firms get less, and some get no offer.</p>
-      <div class="cta">
-        <a class="btn" href="https://pewterdata.com/?ref=PWRP8636" target="_blank" rel="noopener">Get your estimate</a>
-        <a class="btn btn-ghost" href="https://calendly.com/d/d35t-dtz-t3y/confidential-offer-review-pewter?utm_source=partner&amp;utm_campaign=PWRP8636" target="_blank" rel="noopener">Book a call</a>
-      </div>
+    <div class="hero-copy">
+      <p class="pill"><span class="dot"></span>For freight, 3PL and trucking owners</p>
+      <h1>AI labs are paying for <em>freight records</em> like yours.</h1>
+      <p class="lead">A 100-person freight brokerage was reportedly paid $650K for its old records. See what the model shows for your firm.</p>
       <ul class="ticks">
         <li>No files to start</li>
         <li>No upfront cost</li>
-        <li>You approve every term in writing</li>
+        <li>You approve every term</li>
       </ul>
     </div>
-    <aside class="manifest" aria-label="Published freight deals">
-      <div class="manifest-head"><span>Published deals</span><span>Oct 2026</span></div>
-      <div class="row"><div><strong>Freight brokerage</strong><span>100 people</span></div><b>$650K</b></div>
-      <div class="row"><div><strong>Third-party logistics</strong><span>Paid 7 days from bid</span></div><b>$500K</b></div>
-      <div class="row"><div><strong>Fleet logistics</strong><span>15+ people, 4 years of history</span></div><b class="muted">Undisclosed</b></div>
-      <p class="fine">Reported by a licensing firm. Not independently verified, and not a promise of any result.</p>
-    </aside>
+
+    <form class="est glass" onsubmit="return false" aria-label="Estimate calculator">
+      <div class="est-head"><span>Indicative range</span><span class="live"><i></i>Live</span></div>
+      <output class="est-range" id="range" for="emp yrs">$385K <small>to</small> $895K</output>
+      <label class="ctl" for="emp"><span>Employees</span><b id="emp-out">100</b></label>
+      <input id="emp" type="range" min="20" max="200" step="5" value="100">
+      <label class="ctl" for="yrs"><span>Years in business</span><b id="yrs-out">10</b></label>
+      <input id="yrs" type="range" min="3" max="20" step="1" value="10">
+      <a class="btn btn-full" href="https://pewterdata.com/?ref=PWRP8636" target="_blank" rel="noopener">Get your real estimate<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4"/></svg></a>
+      <p class="fine">A scenario, not a valuation. Many firms are offered less, and some get no offer. From the licensing partner's payout model for US firms, using headcount and years only.</p>
+    </form>
   </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-in">
+    <span>Rate quotes</span><span>Dispatch records</span><span>Bills of lading</span><span>Delivery exceptions</span><span>Claims</span><span>TMS notes</span><span>Email</span><span>Chat</span><span>SOPs</span>
+    <span>Rate quotes</span><span>Dispatch records</span><span>Bills of lading</span><span>Delivery exceptions</span><span>Claims</span><span>TMS notes</span><span>Email</span><span>Chat</span><span>SOPs</span>
+  </div></div>
 </section>
 
-<section class="why">
-  <div class="wrap two">
-    <h2>The labs have read the internet. They haven't seen how freight actually moves.</h2>
-    <div>
-      <p>AI models learned from public text. What they can't learn from the web is how a quote gets priced, a claim gets resolved or a shipment gets rescheduled. That knowledge sits in your inbox, your shared drives and your operating systems.</p>
-      <p>So the labs have started paying for it. Google's winning bid for Spirit Airlines' records was $10 million, according to a federal court filing. Firms a fraction of that size have reportedly been paid in the hundreds of thousands.</p>
-    </div>
-  </div>
-</section>
-
-<section id="deals" class="section">
+<section id="numbers" class="sec">
   <div class="wrap">
-    <p class="eyebrow dark">What firms have been paid</p>
-    <h2>Trucking and freight have closed more deals than any other industry.</h2>
-    <p class="sub">That's according to Pewter Data, the firm that runs this process. These are other firms' reported deals, not offers to you.</p>
-    <div class="cards">
-      <article class="deal">
-        <p class="amount">$650K</p>
-        <h3>Freight brokerage, 100 people</h3>
-        <p>Rate quotes, shipment documents, dispatch records, delivery exceptions and claims.</p>
+    <div class="head reveal">
+      <p class="kicker">The numbers</p>
+      <h2>Freight has closed more deals than any other industry.</h2>
+      <p class="sub">That's according to Pewter Data, which runs this process. These are other firms' reported deals, not offers to you.</p>
+    </div>
+    <div class="bento">
+      <article class="card b-lg spot reveal">
+        <div class="routes" aria-hidden="true"><svg viewBox="0 0 500 220" preserveAspectRatio="none"><path class="r r1" d="M0 170C90 170 110 70 210 70S340 150 500 40"/><path class="r r2" d="M0 90C110 90 160 180 270 170S400 110 500 130"/></svg></div>
+        <p class="tag">Freight brokerage, 100 people</p>
+        <p class="num" data-count="650" data-pre="$" data-suf="K">$650K</p>
+        <p class="desc">Rate quotes, shipment documents, dispatch records, delivery exceptions and claims.</p>
       </article>
-      <article class="deal">
-        <p class="amount">$500K</p>
-        <h3>Third-party logistics</h3>
-        <p>Dispatch, customer messages, SOPs and operating conversations. Paid 7 days from bid.</p>
+      <article class="card spot reveal">
+        <p class="tag">Third-party logistics</p>
+        <p class="num sm" data-count="500" data-pre="$" data-suf="K">$500K</p>
+        <p class="desc">Dispatch, customer messages, SOPs and operating conversations. Paid 7 days from bid.</p>
       </article>
-      <article class="deal">
-        <p class="amount small">Undisclosed</p>
-        <h3>Fleet logistics, 15+ people</h3>
-        <p>4 years of history across 7 workplace tools. The smallest firm in any published deal.</p>
+      <article class="card spot reveal">
+        <p class="tag">Published 2026 deals, all industries</p>
+        <p class="num sm">$110K<small> to </small>$1.2M</p>
+        <p class="desc">Some firms get less, and some get no offer.</p>
+      </article>
+      <article class="card spot reveal">
+        <p class="tag">Upfront cost</p>
+        <p class="num sm lime">$0</p>
+        <p class="desc">Nothing to pay unless a deal closes.</p>
+      </article>
+      <article class="card spot reveal">
+        <p class="tag">Fee when a deal closes</p>
+        <p class="num sm" data-count="10" data-suf="%">10%</p>
+        <p class="desc">Of the license price, shown before you sign.</p>
       </article>
     </div>
-    <div class="estimate">
-      <div>
-        <p class="eyebrow dark">Example estimate</p>
-        <p class="range">$385K to $895K</p>
-        <p class="range-for">A 100-person firm, 10 years in business</p>
+    <p class="fine note">Reported by a licensing firm, October 2026. Not independently verified, and not a promise of any result.</p>
+  </div>
+</section>
+
+<section id="records" class="sec alt">
+  <div class="wrap split">
+    <div class="head reveal">
+      <p class="kicker">What we need from you</p>
+      <h2>The records you already have.</h2>
+      <p class="sub">AI models learned from public text. They can't learn from the web how a quote gets priced or a claim gets resolved. Nobody has to create or clean up anything.</p>
+    </div>
+    <ul class="recs">
+      <li class="rec spot reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11v10H4zM15 10h3l2 3v4h-5M7.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM17 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg><div><h3>TMS and dispatch</h3><p>Load history, notes and dispatch records</p></div></li>
+      <li class="rec spot reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M16.5 7.5C16 5.8 14.3 5 12 5 9.5 5 7.5 6.2 7.5 8.3c0 4.7 9.5 2.7 9.5 7.4 0 2.1-2.2 3.3-5 3.3-2.6 0-4.5-1-5-3"/></svg><div><h3>Rate quotes</h3><p>How quotes were priced, won or lost</p></div></li>
+      <li class="rec spot reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/></svg><div><h3>Shipping documents</h3><p>Bills of lading and shipment paperwork</p></div></li>
+      <li class="rec spot reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 20h18zM12 10v4M12 17v.5"/></svg><div><h3>Exceptions and claims</h3><p>What went wrong and how it was fixed</p></div></li>
+      <li class="rec spot reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 7 9-7"/></svg><div><h3>Email and chat</h3><p>How decisions actually get made</p></div></li>
+      <li class="rec spot reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.5M4 12h.5M4 18h.5"/></svg><div><h3>SOPs</h3><p>How your operation is meant to run</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="qualify" class="sec">
+  <div class="wrap">
+    <div class="q-panel glass reveal">
+      <div class="q-left">
+        <p class="kicker">Qualification</p>
+        <h2>Is your firm a likely fit?</h2>
+        <p class="sub">Tap each one that applies. Operating, winding down or closed all count, as long as the records exist.</p>
+        <div class="q-result">
+          <svg class="ring" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34"/><circle id="ring" cx="40" cy="40" r="34"/></svg>
+          <div aria-live="polite"><b id="q-title">0 of 4</b><p id="q-text">Start with your headcount.</p></div>
+        </div>
+        <a id="q-cta" class="btn" href="https://pewterdata.com/?ref=PWRP8636" target="_blank" rel="noopener">Get your estimate</a>
       </div>
-      <div>
-        <p>This comes from the licensing partner's payout model for US firms and uses only headcount and years in business. It's a scenario, not a valuation. What your records hold, who owns them and what a buyer accepts decide the real number. Many firms are offered less, and some get no offer once their records are reviewed.</p>
-        <a class="btn" href="https://pewterdata.com/?ref=PWRP8636" target="_blank" rel="noopener">See the range for your firm</a>
+      <div class="q-list">
+        <button type="button" class="q" aria-pressed="false"><span class="sw"></span><span><b>20+ people</b><small>Full-time staff, now or at your peak</small></span></button>
+        <button type="button" class="q" aria-pressed="false"><span class="sw"></span><span><b>3+ years of records</b><small>Buyers are currently asking for 5+ in logistics</small></span></button>
+        <button type="button" class="q" aria-pressed="false"><span class="sw"></span><span><b>US-based</b><small>Your firm operates in the US</small></span></button>
+        <button type="button" class="q" aria-pressed="false"><span class="sw"></span><span><b>Mainly English</b><small>Your records are mostly in English</small></span></button>
+        <p class="fine">Meeting these points doesn't guarantee an offer.</p>
       </div>
     </div>
-    <p class="fine dark">Across all industries, deals published in 2026 ran from about $110,000 to $1.2 million.</p>
   </div>
 </section>
 
-<section id="records" class="section tint">
+<section id="how" class="sec alt">
   <div class="wrap">
-    <p class="eyebrow dark">What buyers want</p>
-    <h2>You already have it. Nobody has to create or clean up anything.</h2>
-    <div class="grid-3">
-      <div class="tile"><h3>TMS and dispatch</h3><p>Dispatch records, load history and notes tied to real shipments.</p></div>
-      <div class="tile"><h3>Rate quotes</h3><p>How quotes were priced, and how they were won or lost.</p></div>
-      <div class="tile"><h3>Shipping documents</h3><p>Bills of lading and other shipment documents.</p></div>
-      <div class="tile"><h3>Exceptions and claims</h3><p>Delivery problems, how your team handled them and how they ended.</p></div>
-      <div class="tile"><h3>Email and chat</h3><p>The working conversations that show how decisions actually get made.</p></div>
-      <div class="tile"><h3>SOPs</h3><p>How your operation is meant to run, alongside how it really ran.</p></div>
+    <div class="head reveal">
+      <p class="kicker">How it works</p>
+      <h2>A few hours of your time.</h2>
+      <p class="sub">Pewter handles the legwork. Nothing is licensed until you sign.</p>
     </div>
-    <div class="fit">
-      <h3>Is your firm a likely fit?</h3>
-      <ul>
-        <li><b>20+ people</b><span>Full-time staff, now or at your peak. Larger firms see the larger deals.</span></li>
-        <li><b>3+ years of records</b><span>Email, files and records still on hand. For logistics, buyers are currently asking for 5+.</span></li>
-        <li><b>US-based</b><span>Working mainly in English.</span></li>
-        <li><b>Any status</b><span>Operating, winding down or closed, as long as the records exist.</span></li>
-      </ul>
-      <p class="fine dark">Meeting these points doesn't guarantee an offer.</p>
-    </div>
-  </div>
-</section>
-
-<section id="process" class="section">
-  <div class="wrap">
-    <p class="eyebrow dark">How it works</p>
-    <h2>A few hours of your time. Pewter handles the legwork.</h2>
-    <ol class="steps">
-      <li><span>1</span><div><h3>Get an estimate</h3><p>Answer a few questions in about 2 minutes. No files or logins. Pewter calls within 1 business day.</p></div></li>
-      <li><span>2</span><div><h3>Take 2 or 3 calls</h3><p>About 30 minutes each. You get a plain answer on whether your records are likely to sell.</p></div></li>
-      <li><span>3</span><div><h3>Fill in a short inventory</h3><p>Which systems you use, and for how many years. It holds no record contents.</p></div></li>
-      <li><span>4</span><div><h3>Review the written offer</h3><p>The licensing partner makes the offer. Pewter brings it to you in writing and works through price, scope and exclusivity. Your lawyer reads the agreement.</p></div></li>
-      <li><span>5</span><div><h3>Approve a sample and the terms</h3><p>Nothing is licensed until you sign. Your IT person or provider runs the export, and Pewter coordinates it.</p></div></li>
-      <li><span>6</span><div><h3>Get paid</h3><p>The licensing partner pays you, and Pewter tracks each milestone in the agreement through payment.</p></div></li>
+    <ol class="steps" id="steps">
+      <li><i>1</i><h3>Get an estimate</h3><p>About 2 minutes, with no files or logins. Pewter calls within 1 business day.</p></li>
+      <li><i>2</i><h3>Take 2 or 3 calls</h3><p>About 30 minutes each, to learn whether your records are likely to sell.</p></li>
+      <li><i>3</i><h3>List your systems</h3><p>A short inventory of the tools you use and for how long, with no record contents.</p></li>
+      <li><i>4</i><h3>Review the offer</h3><p>You get it in writing, review a sample, and your lawyer reads the agreement.</p></li>
+      <li><i>5</i><h3>Get paid</h3><p>Your IT person runs the export. The licensing partner pays you by the agreed milestones.</p></li>
     </ol>
-    <div class="cost">
-      <p class="cost-big">No offer, no cost.</p>
-      <p>There's nothing to pay upfront. Pewter's fee is 10% of the license price, paid only when a deal closes and shown on your paperwork before you sign. You can walk away at any point before signing.</p>
+  </div>
+</section>
+
+<section id="privacy" class="sec">
+  <div class="wrap split rev">
+    <div class="head reveal">
+      <p class="kicker">Privacy</p>
+      <h2>The work stays. The names don't.</h2>
+      <p class="sub">Identifying details are removed or replaced before delivery. You keep your originals, review a de-identified sample first, and can exclude regulated, privileged or third-party records.</p>
+      <p class="fine">No method removes every risk, so review the process and have your lawyer check your customer and carrier contracts.</p>
+    </div>
+    <div class="mail glass reveal" id="mail">
+      <div class="mail-top">
+        <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div class="seg" role="group" aria-label="Email version">
+          <button type="button" id="m-orig" aria-pressed="false">Original</button>
+          <button type="button" id="m-clean" aria-pressed="true">De-identified</button>
+        </div>
+      </div>
+      <div class="mail-body" id="mail-body">
+        <p><b>From</b> <span class="t" data-o="Erin Calloway" data-c="[Broker_Rep_07]"></span></p>
+        <p><b>To</b> <span class="t" data-o="Sam Reyes, Reyes Produce" data-c="[Contact_112], [Shipper_31]"></span></p>
+        <p><b>Re</b> Load <span class="t" data-o="#52807" data-c="[LOAD_0291]"></span>, reefer alarm</p>
+        <hr>
+        <p>Temp alarm at 2:15 AM near <span class="t" data-o="Tulsa, OK" data-c="[City_44]"></span>. Driver <span class="t" data-o="Tom Baker" data-c="[Driver_19]"></span> (<span class="t" data-o="918-555-0147" data-c="[PHONE]"></span>) rerouted to <span class="t" data-o="Tulsa Cold Storage" data-c="[Facility_08]"></span>. Claim filed with carrier <span class="t" data-o="MC 661204" data-c="[CARRIER_ID]"></span>; product held for inspection.</p>
+      </div>
+      <p class="fine mail-note">Made-up example. All names are fictional.</p>
     </div>
   </div>
 </section>
 
-<section id="privacy" class="section dark-sec">
-  <div class="wrap">
-    <p class="eyebrow">What leaves your building</p>
-    <h2>The work survives. The names don't.</h2>
-    <p class="sub light">Identifying details are removed or replaced with consistent placeholders before delivery. Here's a made-up freight email to show the idea.</p>
-    <div class="compare">
-      <figure>
-        <figcaption>Original, stays with you</figcaption>
-        <pre>From: Erin Calloway &lt;erin@bluelinefreight.example&gt;
-To: Sam Reyes, Reyes Produce
-Re: Load #52807, reefer alarm
-
-Temp alarm at 2:15 AM near Tulsa, OK. Driver
-Tom Baker (918-555-0147) rerouted to Tulsa Cold
-Storage. Claim filed with carrier MC 661204;
-product held for inspection.</pre>
-      </figure>
-      <figure class="clean">
-        <figcaption>De-identified copy, licensed</figcaption>
-        <pre>From: [Broker_Rep_07] &lt;[EMAIL]&gt;
-To: [Contact_112], [Shipper_31]
-Re: Load [LOAD_0291], reefer alarm
-
-Temp alarm at 2:15 AM near [City_44]. Driver
-[Driver_19] ([PHONE]) rerouted to [Facility_08].
-Claim filed with carrier [CARRIER_ID];
-product held for inspection.</pre>
-      </figure>
-    </div>
-    <div class="grid-3 honest">
-      <div><h3>You keep your data</h3><p>You license an agreed, de-identified copy. Your originals and your ownership of them don't change.</p></div>
-      <div><h3>You choose what's in</h3><p>You can exclude regulated, privileged or third-party records. Excluding more may lower the price.</p></div>
-      <div><h3>You see it first</h3><p>You review the process and a de-identified sample before you sign.</p></div>
-    </div>
-    <div class="risk">
-      <h3>The limits you should know</h3>
-      <ul>
-        <li>No de-identification method removes every risk.</li>
-        <li>If you agree to an optional sample, Pewter or its licensing partner may see it before it's de-identified. You choose what goes in, and you can say no.</li>
-        <li>Holding records doesn't always mean you can license them. Customer and carrier contracts may restrict sharing, so have your lawyer check them.</li>
-        <li>Pewter holds no security certification of its own, such as SOC 2. Extra protections, such as escrow, are negotiated into the agreement.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="section">
+<section id="faq" class="sec alt">
   <div class="wrap faq-grid">
-    <div>
-      <p class="eyebrow dark">Before you ask</p>
-      <h2>What owners ask first</h2>
+    <div class="head reveal">
+      <p class="kicker">Questions</p>
+      <h2>What owners ask first.</h2>
     </div>
-    <div class="faq">
-      <details open><summary>Is this real money, or a pitch?</summary><p>Pewter's licensing partner reports paying $350,000 to $650,000 to firms of 60 to 100 people, and Google's $10 million bid for Spirit Airlines' records appears in a court filing. Those figures come from the publishers' own statements and haven't been independently verified. You'd see a written offer before committing, and many firms are offered less.</p></details>
-      <details><summary>Who does what?</summary><p>Pewter sizes your records, brings you the offer and coordinates the deal through payment. The licensing partner makes the offer, signs the license with you and pays you. Pewter isn't your lawyer or agent, and it isn't a law firm or registered broker-dealer, so have your own lawyer review the agreement.</p></details>
-      <details><summary>Who will use the data, and for what?</summary><p>Authorized AI developers, for training and evaluating models, as defined in your agreement. Exclusivity and permitted uses are written into the terms you approve. If you want to know who the buyer is, or whether the data could help train a competitor's tools, ask on the call and get the answer in the terms.</p></details>
-      <details><summary>Will my customers, carriers or employees be exposed?</summary><p>Names, contact details, account numbers, credentials and payment details are removed or replaced before delivery. No method removes every risk, so you review the process and a sample before signing. You can also ask to exclude pay and HR records in writing.</p></details>
-      <details><summary>Who sees my records before I sign?</summary><p>No one, unless you agree. Pewter may ask to review a small sample you choose, to check quality, and you can decline. The full export happens only after you approve the terms in writing.</p></details>
-      <details><summary>How much of my team's time does it take?</summary><p>A few hours: 2 or 3 calls of about 30 minutes each, plus a short inventory of your systems. If an export is needed, your IT person or provider runs it.</p></details>
-      <details><summary>What if I don't know what data we have?</summary><p>That's common. Tell Pewter which tools you've used over the years, such as email, shared drives and your TMS, and they'll work out what's there on the call.</p></details>
-      <details><summary>Does this make sense if we've closed or are winding down?</summary><p>It can. Closed firms can qualify as long as the records still exist. When subscriptions lapse, archives can get deleted and that value is lost, so check before you cancel any old systems.</p></details>
-      <details><summary>Who is Pewter?</summary><p>Pewter Data is operated by Buzzlead.io LLC, a Florida company, and launched in October 2026. It's run by 3 enterprise sales veterans: Chelunor (Lawrence) Nwajei, Nick Konstantinidis and Troy Aitken. Lawrence or Troy will be the ones calling you.</p></details>
-      <details><summary>Who runs this site, and do they get paid?</summary><p>Data Labs is run by Radhakrishnan P, an independent referral partner of Pewter. Data Labs isn't Pewter or the buyer. If you come through this site and a deal closes, Data Labs may receive a referral fee, paid by Pewter from its own fee.</p></details>
+    <div class="faq reveal">
+      <details open><summary>Is this real money?</summary><p>Pewter's licensing partner reports paying $350,000 to $650,000 to firms of 60 to 100 people, and Google's $10 million winning bid for Spirit Airlines' records appears in a court filing. These figures haven't been independently verified. You'd see a written offer before committing, and many firms are offered less.</p></details>
+      <details><summary>Who does what?</summary><p>Pewter sizes your records, brings you the offer and coordinates the deal. The licensing partner makes the offer, signs the license with you and pays you. Pewter isn't your lawyer or agent, and it isn't a law firm or registered broker-dealer.</p></details>
+      <details><summary>Do I lose my data?</summary><p>No. You license an agreed, de-identified copy. Your originals and your ownership of them don't change.</p></details>
+      <details><summary>Who sees my records before I sign?</summary><p>No one, unless you agree. Pewter may ask to review a small sample you choose, and you can say no. If you agree, Pewter or its licensing partner may see it before it's de-identified. The full export happens only after you approve the terms in writing.</p></details>
+      <details><summary>Who will use the data?</summary><p>Authorized AI developers, for training and evaluating models, as defined in your agreement. Exclusivity and permitted uses are written into the terms you approve, so ask about competitors on the call.</p></details>
+      <details><summary>Can I share customer and carrier records?</summary><p>Holding records doesn't always mean you can license them, and contracts may restrict sharing. Names and contact details are removed, and you can exclude third-party records, though excluding more may lower the price. Have your lawyer check.</p></details>
+      <details><summary>How secure is it?</summary><p>Pewter holds no security certification of its own, such as SOC 2. Extra protections, such as escrow, are negotiated into your agreement.</p></details>
+      <details><summary>Who is Pewter, and who runs this site?</summary><p>Pewter Data is operated by Buzzlead.io LLC, a Florida company, and launched in October 2026. Data Labs is run by Radhakrishnan P, an independent referral partner. Data Labs may receive a referral fee from Pewter if a deal closes.</p></details>
     </div>
   </div>
 </section>
 
 <section class="final">
-  <div class="wrap final-in">
-    <h2>Find out whether your records would sell.</h2>
-    <p>It takes about 2 minutes, with no files and no obligation.</p>
-    <div class="cta center">
+  <div class="wrap reveal">
+    <img src="logo.svg" alt="" width="52" height="52">
+    <h2>Find out if your records would sell.</h2>
+    <p>About 2 minutes, with no files and no obligation.</p>
+    <div class="cta">
       <a class="btn" href="https://pewterdata.com/?ref=PWRP8636" target="_blank" rel="noopener">Get your estimate</a>
-      <a class="btn btn-ghost" href="https://calendly.com/d/d35t-dtz-t3y/confidential-offer-review-pewter?utm_source=partner&amp;utm_campaign=PWRP8636" target="_blank" rel="noopener">Book a call</a>
+      <a class="btn btn-line" href="https://calendly.com/d/d35t-dtz-t3y/confidential-offer-review-pewter?utm_source=partner&amp;utm_campaign=PWRP8636" target="_blank" rel="noopener">Book a call</a>
     </div>
   </div>
 </section>
@@ -227,12 +221,13 @@ product held for inspection.</pre>
 
 <footer>
   <div class="wrap foot">
-    <p><b>About this site.</b> Data Labs is an independent referral partner of Pewter Data and may receive a referral fee if a deal closes. Data Labs isn't the buyer, doesn't make offers and never collects your records, files or logins. The estimate and booking links above go to Pewter.</p>
-    <p><b>About Pewter.</b> Pewter Data is operated by Buzzlead.io LLC, 7885 Boca Ciega Drive, Suite B, St. Pete Beach, FL 33706. Pewter coordinates data-licensing deals with a licensing firm, which licenses the data and pays the business. Pewter's fee is 10% of the license price, paid only when a deal closes.</p>
-    <p><b>Figures.</b> Deal examples are other firms' deals, taken from the publishers' own statements or cited court records. They haven't been independently verified and aren't a promise of any result. The example range is an illustration, not an offer. Nothing here is legal advice.</p>
+    <p><b>About this site.</b> Data Labs is an independent referral partner of Pewter Data and may receive a referral fee if a deal closes. Data Labs isn't the buyer, doesn't make offers and never collects your records, files or logins. Both links on this page go to Pewter.</p>
+    <p><b>About Pewter.</b> Pewter Data is operated by Buzzlead.io LLC, 7885 Boca Ciega Drive, Suite B, St. Pete Beach, FL 33706. It coordinates data-licensing deals with a licensing firm, which licenses the data and pays the business.</p>
+    <p><b>Figures.</b> Deal examples are other firms' deals, from the publishers' own statements or cited court records. They aren't independently verified or a promise of any result. The range is an illustration, not an offer. Nothing here is legal advice.</p>
     <p><b>Payment safety.</b> Pewter says it will never send or change payment instructions by email. If you receive new wire details, call a number you already know before you act.</p>
     <p class="copy">© 2026 Data Labs</p>
   </div>
 </footer>
+<script src="app.js"></script>
 </body>
 </html>
